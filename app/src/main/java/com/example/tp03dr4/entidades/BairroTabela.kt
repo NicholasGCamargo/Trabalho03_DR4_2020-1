@@ -1,6 +1,7 @@
 package com.example.tp03dr4.entidades
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity
 class BairroTabela(
@@ -10,6 +11,7 @@ class BairroTabela(
     val avg4: Float,
     val avg5: Float,
     val avg6: Float,
+    @PrimaryKey(autoGenerate = false)
     val bairro: ByteArray
 ) {
 }
