@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">TP03DR4</string>
+
+    <string name="email_usuario">Insira seu Email</string>
+    <string name="hint_email">E-mail…</string>
+    <string name="senha_usuario">Insira sua senha</string>
+    <string name="hint_senha">Senha…</string>
+
+    <string name="btn_criar_conta">Crie sua conta</string>
+    <string name="btn_logar_conta">Conecte-se aqui</string>
+
+    <string name="title_activity_conteudo">TP03DR4</string>
+    <string name="title_home">Avaliar</string>
+    <string name="title_dashboard">Avaliações feitas</string>
+    <string name="title_notifications">Por Bairros</string>
+    <string name="logout">Logout</string>
+
+    <string-array name="spinner_escolhas">
+        <item>Restaurante1</item>
+        <item>Restaurante2</item>
+        <item>Restaurante3</item>
+        <item>Bar1</item>
+        <item>Bar2</item>
+        <item>Bar3</item>
+        <item>Bar4</item>
+        <item>Lanchonete1</item>
+        <item>Lanchonete2</item>
+    </string-array>
+    <string-array name="spinner_bairro">
+        <item>Bairro 1</item>
+        <item>Bairro 2</item>
+        <item>Bairro 3</item>
+        <item>Bairro 4</item>
+        <item>Bairro 5</item>
+        <item>Bairro 6</item>
+        <item>Bairro 7</item>
+        <item>Bairro 8</item>
+        <item>Bairro 9</item>
+        <item>Bairro 10</item>
+        <item>Bairro 11</item>
+    </string-array>
+
+    <string name="enviar_aval">Enviar Avaliação</string>
+
+</resources>
