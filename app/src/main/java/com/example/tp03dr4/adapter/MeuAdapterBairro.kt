@@ -21,9 +21,9 @@ class MeuAdapterBairro(val lista: Array<BairroTabela>):RecyclerView.Adapter<MeuA
         val dado = lista[position]
         holder.campoBairro.text = Criptografador().decipher(dado.bairro)
         holder.campoPct.text = "Porcentagem de cada pergunta, em ordem, é\n" +
-                "\t 1:${(dado.avg1 * 100).toInt()}\n" +
-                " \t2:${(dado.avg2* 100).toInt()}\n\t 3:${(dado.avg3* 100).toInt()}" +
-                "\n\t 4:${(dado.avg4* 100).toInt()}\n\t 5:${(dado.avg5* 100).toInt()}\n\t 6:${(dado.avg6* 100).toInt()}"
+                "\t Perunta1:${(dado.avg1 * 100).toInt()}%\n" +
+                " \tPerunta2:${(dado.avg2* 100).toInt()}%\n\t Perunta3:${(dado.avg3* 100).toInt()}%" +
+                "\n\t Perunta4:${(dado.avg4* 100).toInt()}%\n\t Perunta5:${(dado.avg5* 100).toInt()}%\n\t Perunta6:${(dado.avg6* 100).toInt()}%"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DadosViewHolder {
