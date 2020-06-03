@@ -4,4 +4,5 @@ fizemos um programa simples para salvar 6 respostas de perguntas utilizando a bi
 O nome do bairro e "restaurante" avaliados ficam salvos criptografados e podemos ver as avaliações feitas pelo usuario logado e uma média 
 de todos os usuários do telefone dividida em bairros.
 ### Problema(s) encontrado(s)
-Ao seguir a Criptografia aprendida em sala, uma mesma string pode gerar mais de um tipo de ByteArray, levando isso em concideração vemos que ao agrupar por bairros o agrupamento fica errado, pois o mesmo bairro pode ter diversas ByteArrays e gerando uma dificuldade extra na organização
+~~Ao seguir a Criptografia aprendida em sala, uma mesma string pode gerar mais de um tipo de ByteArray, levando isso em concideração vemos que ao agrupar por bairros o agrupamento fica errado, pois o mesmo bairro pode ter diversas ByteArrays e gerando uma dificuldade extra na organização~~
+*O problema foi resolvido apos mudar de Group By para Order By* explicação do por que sera inserida depois.
