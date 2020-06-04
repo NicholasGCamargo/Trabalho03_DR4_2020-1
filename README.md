@@ -6,3 +6,4 @@ de todos os usuários do telefone dividida em bairros.
 ### Problema(s) encontrado(s)
 [x] ~~Ao seguir a Criptografia aprendida em sala, uma mesma string pode gerar mais de um tipo de ByteArray, levando isso em concideração vemos que ao agrupar por bairros o agrupamento fica errado, pois o mesmo bairro pode ter diversas ByteArrays e gerando uma dificuldade extra na organização~~
 *O problema foi resolvido apos mudar de Group By para Order By* explicação do por que sera inserida depois.
+\n > Aparentemente é possivel que o Order By agrupe caso os nomes sejam iguais, isto deve estar ocorrendo. Mesmo assim o fato de o Group By não funcionar sozinho deve se dar em relação aos bytes arrays não serem iguais.
