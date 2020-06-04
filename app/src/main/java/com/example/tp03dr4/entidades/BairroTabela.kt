@@ -12,6 +12,6 @@ class BairroTabela(
     val avg5: Float,
     val avg6: Float,
     @PrimaryKey(autoGenerate = false)
-    val bairro: ByteArray
+    val bairro: String
 ) {
 }

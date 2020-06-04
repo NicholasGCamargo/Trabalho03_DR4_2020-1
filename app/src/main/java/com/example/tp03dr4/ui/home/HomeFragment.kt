@@ -14,7 +14,6 @@ import androidx.room.Room
 import com.example.tp03dr4.BD.database
 import com.example.tp03dr4.R
 import com.example.tp03dr4.ViewModel.MeuViewModel
-import com.example.tp03dr4.classes.Criptografador
 import com.example.tp03dr4.entidades.tabela
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -69,8 +68,8 @@ class HomeFragment : Fragment() {
             val perg4 = if(pergunta4.checkedRadioButtonId == R.id.respostaPergunta41) 1f else 0f
             val perg5 = if(pergunta5.checkedRadioButtonId == R.id.respostaPergunta51) 1f else 0f
             val perg6 = if(pergunta6.checkedRadioButtonId == R.id.respostaPergunta61) 1f else 0f
-            val restaurante: ByteArray = Criptografador().cipher(spinner1.selectedItem.toString())
-            val bairro: ByteArray = Criptografador().cipher(spinner2.selectedItem.toString())
+            val restaurante: String = spinner1.selectedItem.toString()
+            val bairro: String = spinner2.selectedItem.toString()
 
             timeoutBtn()
             InserirBD().execute(tabela(meuViewModel.idAtual, restaurante, bairro, perg1, perg2, perg3, perg4, perg5, perg6))
