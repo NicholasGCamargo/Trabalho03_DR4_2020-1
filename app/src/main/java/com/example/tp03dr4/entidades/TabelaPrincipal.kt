@@ -4,7 +4,7 @@ import androidx.room.Entity
 import com.example.tp03dr4.classes.CriptoString
 
 @Entity(primaryKeys = arrayOf("id_avaliado", "nome_empresa", "bairro"))
-class tabela(
+class TabelaPrincipal(
     val id_avaliado: String,
     val nome_empresa: CriptoString,
     val bairro: CriptoString,

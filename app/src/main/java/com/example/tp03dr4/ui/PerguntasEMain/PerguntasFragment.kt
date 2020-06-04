@@ -1,4 +1,4 @@
-package com.example.tp03dr4.ui.home
+package com.example.tp03dr4.ui.PerguntasEMain
 
 import android.os.AsyncTask
 import android.os.Bundle
@@ -11,14 +11,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
-import com.example.tp03dr4.BD.database
+import com.example.tp03dr4.BD.MyDatabase
 import com.example.tp03dr4.R
 import com.example.tp03dr4.ViewModel.MeuViewModel
 import com.example.tp03dr4.classes.CriptoString
-import com.example.tp03dr4.entidades.tabela
+import com.example.tp03dr4.entidades.TabelaPrincipal
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class PerguntasFragment : Fragment() {
 
     lateinit var meuViewModel: MeuViewModel
 
@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
             bairro.setClearText(spinner2.selectedItem.toString())
 
             timeoutBtn()
-            InserirBD().execute(tabela(meuViewModel.idAtual, restaurant, bairro, perg1, perg2, perg3, perg4, perg5, perg6))
+            InserirBD().execute(TabelaPrincipal(meuViewModel.idAtual, restaurant, bairro, perg1, perg2, perg3, perg4, perg5, perg6))
 
         }
     }
@@ -86,12 +86,12 @@ class HomeFragment : Fragment() {
 
     }
 
-    inner class InserirBD(): AsyncTask<tabela, Unit, Boolean>(){
-        override fun doInBackground(vararg params: tabela?):Boolean {
+    inner class InserirBD(): AsyncTask<TabelaPrincipal, Unit, Boolean>(){
+        override fun doInBackground(vararg params: TabelaPrincipal?):Boolean {
             return try {
                 val db = Room.databaseBuilder(
                     activity!!.applicationContext,
-                    database::class.java,
+                    MyDatabase::class.java,
                     "appdatabase.db"
                 ).build()
 

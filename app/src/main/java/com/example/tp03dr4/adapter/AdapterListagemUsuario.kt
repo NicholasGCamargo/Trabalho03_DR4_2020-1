@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tp03dr4.R
-import com.example.tp03dr4.entidades.tabela
+import com.example.tp03dr4.entidades.TabelaPrincipal
 import kotlinx.android.synthetic.main.rcy_layout.view.*
 
-class MeuAdapter(val lista: Array<tabela>): RecyclerView.Adapter<MeuAdapter.DadosViewHolder>() {
+class AdapterListagemUsuario(val lista: Array<TabelaPrincipal>): RecyclerView.Adapter<AdapterListagemUsuario.DadosViewHolder>() {
 
     class DadosViewHolder(v: View): RecyclerView.ViewHolder(v){
         val campoRest = v.nomeRest

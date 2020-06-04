@@ -4,7 +4,7 @@ import androidx.room.Entity
 import com.example.tp03dr4.classes.CriptoString
 
 @Entity
-class Bairro(
+class BairroSolo(
     val bairro: CriptoString
 ) {
 }

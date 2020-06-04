@@ -1,4 +1,4 @@
-package com.example.tp03dr4.ui.dashboard
+package com.example.tp03dr4.ui.SuasListagens
 
 import android.os.AsyncTask
 import android.os.Bundle
@@ -11,14 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
-import com.example.tp03dr4.BD.database
+import com.example.tp03dr4.BD.MyDatabase
 import com.example.tp03dr4.R
 import com.example.tp03dr4.ViewModel.MeuViewModel
-import com.example.tp03dr4.adapter.MeuAdapter
-import com.example.tp03dr4.entidades.tabela
+import com.example.tp03dr4.adapter.AdapterListagemUsuario
+import com.example.tp03dr4.entidades.TabelaPrincipal
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
-class DashboardFragment : Fragment() {
+class ListagensFragment : Fragment() {
 
     private lateinit var meuViewModel: MeuViewModel
 
@@ -44,12 +44,12 @@ class DashboardFragment : Fragment() {
 
     }
 
-    inner class PegarBD(): AsyncTask<String, Unit, Array<tabela>?>(){
-        override fun doInBackground(vararg params: String?): Array<tabela>? {
+    inner class PegarBD(): AsyncTask<String, Unit, Array<TabelaPrincipal>?>(){
+        override fun doInBackground(vararg params: String?): Array<TabelaPrincipal>? {
             return try {
                 val db = Room.databaseBuilder(
                     activity!!.applicationContext,
-                    database::class.java,
+                    MyDatabase::class.java,
                     "appdatabase.db"
                 ).build()
 
@@ -60,7 +60,7 @@ class DashboardFragment : Fragment() {
             }
         }
 
-        override fun onPostExecute(result: Array<tabela>?) {
+        override fun onPostExecute(result: Array<TabelaPrincipal>?) {
             super.onPostExecute(result)
             if(result == null){
                 Toast.makeText(
@@ -69,7 +69,7 @@ class DashboardFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
             }else{
-                rcyVwDashboard.adapter = MeuAdapter(result)
+                rcyVwDashboard.adapter = AdapterListagemUsuario(result)
                 rcyVwDashboard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
             }

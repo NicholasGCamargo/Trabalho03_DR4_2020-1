@@ -1,4 +1,4 @@
-package com.example.tp03dr4.ui.notifications
+package com.example.tp03dr4.ui.BairrosAgrupados
 
 import android.os.AsyncTask
 import android.os.Bundle
@@ -8,21 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
-import com.example.tp03dr4.BD.database
+import com.example.tp03dr4.BD.MyDatabase
 import com.example.tp03dr4.R
-import com.example.tp03dr4.ViewModel.MeuViewModel
-import com.example.tp03dr4.adapter.MeuAdapterBairro
+import com.example.tp03dr4.adapter.AdapterBairrosAgrupados
 import com.example.tp03dr4.classes.ConfereBairroTratamento
 import com.example.tp03dr4.classes.TratamentoBairros
 import com.example.tp03dr4.entidades.BairroTabela
 import kotlinx.android.synthetic.main.fragment_notifications.*
 
-class NotificationsFragment : Fragment() {
-
-    private lateinit var meuViewModel: MeuViewModel
+class BairrosFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,10 +26,6 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-
-        activity?.let {
-            meuViewModel = ViewModelProviders.of(it)[MeuViewModel::class.java]
-        }
 
         return root
     }
@@ -50,7 +42,7 @@ class NotificationsFragment : Fragment() {
             try {
                 val db = Room.databaseBuilder(
                     activity!!.applicationContext,
-                    database::class.java,
+                    MyDatabase::class.java,
                     "appdatabase.db"
                 ).build()
 
@@ -114,7 +106,7 @@ class NotificationsFragment : Fragment() {
                     index++
                 }
 
-                rcyVwBairros.adapter = MeuAdapterBairro(classTratamento.resultado)
+                rcyVwBairros.adapter = AdapterBairrosAgrupados(classTratamento.resultado)
                 rcyVwBairros.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             }

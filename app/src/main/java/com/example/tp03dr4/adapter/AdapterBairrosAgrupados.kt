@@ -8,7 +8,7 @@ import com.example.tp03dr4.R
 import com.example.tp03dr4.entidades.BairroTabela
 import kotlinx.android.synthetic.main.rcy_vw_layout_bairro.view.*
 
-class MeuAdapterBairro(val lista: MutableList<BairroTabela>):RecyclerView.Adapter<MeuAdapterBairro.DadosViewHolder>() {
+class AdapterBairrosAgrupados(val lista: MutableList<BairroTabela>):RecyclerView.Adapter<AdapterBairrosAgrupados.DadosViewHolder>() {
     class DadosViewHolder(v: View):RecyclerView.ViewHolder(v){
         val campoBairro = v.txtVwBairroNome
         val campoPct = v.txtVwPorcentagem
