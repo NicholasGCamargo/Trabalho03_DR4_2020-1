@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
-import com.example.tp03dr4.BD.MyDatabase
+import com.example.tp03dr4.BD.MyDatabaseService
 import com.example.tp03dr4.R
 import com.example.tp03dr4.adapter.AdapterBairrosAgrupados
 import com.example.tp03dr4.classes.ConfereBairroTratamento
@@ -40,11 +39,7 @@ class BairrosFragment : Fragment() {
     inner class PegarBDBairro():AsyncTask<Unit, Unit, MutableList<BairroTabela>?>() {
         override fun doInBackground(vararg params: Unit?): MutableList<BairroTabela>? {
             try {
-                val db = Room.databaseBuilder(
-                    activity!!.applicationContext,
-                    MyDatabase::class.java,
-                    "appdatabase.db"
-                ).build()
+                val db =  MyDatabaseService.getInstance(context!!)
 
                 val bairros = TratamentoBairros(db.tabelaDAO().allBairro()).tratarDados()
 

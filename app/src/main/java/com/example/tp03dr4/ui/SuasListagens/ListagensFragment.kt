@@ -10,8 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
-import com.example.tp03dr4.BD.MyDatabase
+import com.example.tp03dr4.BD.MyDatabaseService
 import com.example.tp03dr4.R
 import com.example.tp03dr4.ViewModel.MeuViewModel
 import com.example.tp03dr4.adapter.AdapterListagemUsuario
@@ -47,11 +46,7 @@ class ListagensFragment : Fragment() {
     inner class PegarBD(): AsyncTask<String, Unit, Array<TabelaPrincipal>?>(){
         override fun doInBackground(vararg params: String?): Array<TabelaPrincipal>? {
             return try {
-                val db = Room.databaseBuilder(
-                    activity!!.applicationContext,
-                    MyDatabase::class.java,
-                    "appdatabase.db"
-                ).build()
+                val db =  MyDatabaseService.getInstance(context!!)
 
                 return db.tabelaDAO().all(params[0]!!)
             }catch (e: Exception){

@@ -10,8 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.room.Room
-import com.example.tp03dr4.BD.MyDatabase
+import com.example.tp03dr4.BD.MyDatabaseService
 import com.example.tp03dr4.R
 import com.example.tp03dr4.ViewModel.MeuViewModel
 import com.example.tp03dr4.classes.CriptoString
@@ -89,11 +88,7 @@ class PerguntasFragment : Fragment() {
     inner class InserirBD(): AsyncTask<TabelaPrincipal, Unit, Boolean>(){
         override fun doInBackground(vararg params: TabelaPrincipal?):Boolean {
             return try {
-                val db = Room.databaseBuilder(
-                    activity!!.applicationContext,
-                    MyDatabase::class.java,
-                    "appdatabase.db"
-                ).build()
+                val db = MyDatabaseService.getInstance(context!!)
 
                 db.tabelaDAO().insert(params[0]!!)
 
