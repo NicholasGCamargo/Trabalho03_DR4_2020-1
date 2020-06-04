@@ -8,4 +8,6 @@ de todos os usuários do telefone dividida em bairros.
 *O problema foi resolvido apos mudar de Group By para Order By* explicação do por que sera inserida depois.
 > ~~Aparentemente é possivel que o Order By agrupe caso os nomes sejam iguais, isto deve estar ocorrendo. Mesmo assim o fato de o Group By não funcionar sozinho deve se dar em relação aos bytes arrays não serem iguais.~~
 
-Problema resolvido apos Criação da classe CriptoString onde o dado armazenado no BD é transformado de string para isto e de isto para string quando se for pegar.
+~~Problema resolvido apos Criação da classe CriptoString onde o dado armazenado no BD é transformado de string para isto e de isto para string quando se for pegar.~~
+
+Problema volta a ocorrer quando mudamos o tipo de dado para CriptoString na DB ao inves de string
