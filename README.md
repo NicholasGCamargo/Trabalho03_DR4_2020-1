@@ -10,4 +10,6 @@ de todos os usuários do telefone dividida em bairros.
 
 ~~Problema resolvido apos Criação da classe CriptoString onde o dado armazenado no BD é transformado de string para isto e de isto para string quando se for pegar.~~
 
-Problema volta a ocorrer quando mudamos o tipo de dado para CriptoString na DB ao inves de string
+~~Problema volta a ocorrer quando mudamos o tipo de dado para CriptoString na DB ao inves de string~~
+
+Problema finalmente resolvido, dados foram tratados utlizando tres listas com a mesma quantidade de index para conferirmos os bairros que ja apareceram apos serem descriptografados.
