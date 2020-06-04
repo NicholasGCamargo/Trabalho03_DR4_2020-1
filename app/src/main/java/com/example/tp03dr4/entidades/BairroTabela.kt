@@ -6,12 +6,12 @@ import com.example.tp03dr4.classes.CriptoString
 
 @Entity
 class BairroTabela(
-    val avg1: Float,
-    val avg2: Float,
-    val avg3: Float,
-    val avg4: Float,
-    val avg5: Float,
-    val avg6: Float,
+    var avg1: Float,
+    var avg2: Float,
+    var avg3: Float,
+    var avg4: Float,
+    var avg5: Float,
+    var avg6: Float,
     @PrimaryKey(autoGenerate = false)
     val bairro: CriptoString
 ) {

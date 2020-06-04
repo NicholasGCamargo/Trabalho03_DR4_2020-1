@@ -76,7 +76,41 @@ class NotificationsFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
             }else{
-                rcyVwBairros.adapter = MeuAdapterBairro(result)
+
+                //tratamento de dados
+                val bairros: MutableList<String> = mutableListOf()
+                val qtd: MutableList<Int> = mutableListOf()
+                val resultado: MutableList<BairroTabela> = mutableListOf()
+
+                var index = 0
+
+                while (index < result.size){
+                    if(result[index].bairro.getClearText() in bairros){
+                        //bairro já existe dentro
+                        var i = 0
+                        while(i < resultado.size){
+                            if(resultado[i].bairro.getClearText() == result[index].bairro.getClearText()){
+                                qtd[i] += 1
+                                resultado[i].avg1 = (resultado[i].avg1 + result[index].avg1) / qtd[i]
+                                resultado[i].avg2 = (resultado[i].avg2 + result[index].avg2) / qtd[i]
+                                resultado[i].avg3 = (resultado[i].avg3 + result[index].avg3) / qtd[i]
+                                resultado[i].avg4 = (resultado[i].avg4 + result[index].avg4) / qtd[i]
+                                resultado[i].avg5 = (resultado[i].avg5 + result[index].avg5) / qtd[i]
+                                resultado[i].avg6 = (resultado[i].avg6 + result[index].avg6) / qtd[i]
+                            }
+                            i++
+                        }
+                    }else{
+                        //bairro não existe dentro
+                        bairros.add(result[index].bairro.getClearText()!!)
+                        qtd.add(1)
+                        resultado.add(result[index])
+                    }
+
+                    index++
+                }
+
+                rcyVwBairros.adapter = MeuAdapterBairro(resultado)
                 rcyVwBairros.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             }
         }
