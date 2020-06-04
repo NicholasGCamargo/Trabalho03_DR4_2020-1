@@ -15,6 +15,7 @@ import com.example.tp03dr4.BD.database
 import com.example.tp03dr4.R
 import com.example.tp03dr4.ViewModel.MeuViewModel
 import com.example.tp03dr4.adapter.MeuAdapterBairro
+import com.example.tp03dr4.classes.ConfereBairroTratamento
 import com.example.tp03dr4.classes.TratamentoBairros
 import com.example.tp03dr4.entidades.BairroTabela
 import kotlinx.android.synthetic.main.fragment_notifications.*
@@ -44,7 +45,7 @@ class NotificationsFragment : Fragment() {
 
     }
 
-    inner class PegarBDBairro():AsyncTask<Unit, Unit, MutableList<BairroTabela>?>(){
+    inner class PegarBDBairro():AsyncTask<Unit, Unit, MutableList<BairroTabela>?>() {
         override fun doInBackground(vararg params: Unit?): MutableList<BairroTabela>? {
             try {
                 val db = Room.databaseBuilder(
@@ -58,10 +59,10 @@ class NotificationsFragment : Fragment() {
                 val passar = mutableListOf<BairroTabela>()
                 bairros.forEach {
                     passar.add(db.tabelaDAO().bairro(it)[0])
-                    Log.d("PEGANDO DB", passar[passar.lastIndex].bairro.getClearText() ?:"Null")
+                    Log.d("PEGANDO DB", passar[passar.lastIndex].bairro.getClearText() ?: "Null")
                 }
                 return passar
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.e("ERRO DE DATABASE", e.message!!)
                 return null
             }
@@ -69,49 +70,53 @@ class NotificationsFragment : Fragment() {
 
         override fun onPostExecute(result: MutableList<BairroTabela>?) {
             super.onPostExecute(result)
-            if(result == null){
+            if (result == null) {
                 Toast.makeText(
                     activity!!.applicationContext,
                     "Ocorreu algum erro",
                     Toast.LENGTH_LONG
                 ).show()
-            }else{
+            } else {
 
                 //tratamento de dados
-                val bairros: MutableList<String> = mutableListOf()
-                val qtd: MutableList<Int> = mutableListOf()
-                val resultado: MutableList<BairroTabela> = mutableListOf()
-
+                val classTratamento = ConfereBairroTratamento()
                 var index = 0
 
-                while (index < result.size){
-                    if(result[index].bairro.getClearText() in bairros){
+                while (index < result.size) {
+                    if (result[index].bairro.getClearText() in classTratamento.bairros) {
                         //bairro já existe dentro
                         var i = 0
-                        while(i < resultado.size){
-                            if(resultado[i].bairro.getClearText() == result[index].bairro.getClearText()){
-                                qtd[i] += 1
-                                resultado[i].avg1 = (resultado[i].avg1 + result[index].avg1) / qtd[i]
-                                resultado[i].avg2 = (resultado[i].avg2 + result[index].avg2) / qtd[i]
-                                resultado[i].avg3 = (resultado[i].avg3 + result[index].avg3) / qtd[i]
-                                resultado[i].avg4 = (resultado[i].avg4 + result[index].avg4) / qtd[i]
-                                resultado[i].avg5 = (resultado[i].avg5 + result[index].avg5) / qtd[i]
-                                resultado[i].avg6 = (resultado[i].avg6 + result[index].avg6) / qtd[i]
+                        while (i < classTratamento.resultado.size) {
+                            if (classTratamento.resultado[i].bairro.getClearText() == result[index].bairro.getClearText()) {
+                                classTratamento.qtd[i] += 1
+                                classTratamento.resultado[i].avg1 =
+                                    (classTratamento.resultado[i].avg1 + result[index].avg1) / classTratamento.qtd[i]
+                                classTratamento.resultado[i].avg2 =
+                                    (classTratamento.resultado[i].avg2 + result[index].avg2) / classTratamento.qtd[i]
+                                classTratamento.resultado[i].avg3 =
+                                    (classTratamento.resultado[i].avg3 + result[index].avg3) / classTratamento.qtd[i]
+                                classTratamento.resultado[i].avg4 =
+                                    (classTratamento.resultado[i].avg4 + result[index].avg4) / classTratamento.qtd[i]
+                                classTratamento.resultado[i].avg5 =
+                                    (classTratamento.resultado[i].avg5 + result[index].avg5) / classTratamento.qtd[i]
+                                classTratamento.resultado[i].avg6 =
+                                    (classTratamento.resultado[i].avg6 + result[index].avg6) / classTratamento.qtd[i]
                             }
                             i++
                         }
-                    }else{
+                    } else {
                         //bairro não existe dentro
-                        bairros.add(result[index].bairro.getClearText()!!)
-                        qtd.add(1)
-                        resultado.add(result[index])
+                        classTratamento.bairros.add(result[index].bairro.getClearText()!!)
+                        classTratamento.qtd.add(1)
+                        classTratamento.resultado.add(result[index])
                     }
 
                     index++
                 }
 
-                rcyVwBairros.adapter = MeuAdapterBairro(resultado)
-                rcyVwBairros.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                rcyVwBairros.adapter = MeuAdapterBairro(classTratamento.resultado)
+                rcyVwBairros.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             }
         }
     }
