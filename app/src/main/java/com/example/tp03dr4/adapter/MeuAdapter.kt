@@ -27,8 +27,8 @@ class MeuAdapter(val lista: Array<tabela>): RecyclerView.Adapter<MeuAdapter.Dado
 
     override fun onBindViewHolder(holder: DadosViewHolder, position: Int) {
         val dado = lista[position]
-        holder.campoBairro.text = dado.bairro
-        holder.campoRest.text = dado.nome_empresa
+        holder.campoBairro.text = dado.bairro.getClearText()
+        holder.campoRest.text = dado.nome_empresa.getClearText()
         holder.perg1.text = "Resp 1: ${if(dado.resp1 == 1f) "sim" else "não"}"
         holder.perg2.text = "Resp 2: ${if(dado.resp2 == 1f) "sim" else "não"}"
         holder.perg3.text = "Resp 3: ${if(dado.resp3 == 1f) "sim" else "não"}"

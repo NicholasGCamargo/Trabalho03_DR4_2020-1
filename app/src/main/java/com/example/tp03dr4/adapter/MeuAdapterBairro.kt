@@ -8,7 +8,7 @@ import com.example.tp03dr4.R
 import com.example.tp03dr4.entidades.BairroTabela
 import kotlinx.android.synthetic.main.rcy_vw_layout_bairro.view.*
 
-class MeuAdapterBairro(val lista: Array<BairroTabela>):RecyclerView.Adapter<MeuAdapterBairro.DadosViewHolder>() {
+class MeuAdapterBairro(val lista: MutableList<BairroTabela>):RecyclerView.Adapter<MeuAdapterBairro.DadosViewHolder>() {
     class DadosViewHolder(v: View):RecyclerView.ViewHolder(v){
         val campoBairro = v.txtVwBairroNome
         val campoPct = v.txtVwPorcentagem
@@ -18,7 +18,7 @@ class MeuAdapterBairro(val lista: Array<BairroTabela>):RecyclerView.Adapter<MeuA
 
     override fun onBindViewHolder(holder: DadosViewHolder, position: Int) {
         val dado = lista[position]
-        holder.campoBairro.text = dado.bairro
+        holder.campoBairro.text = dado.bairro.getClearText()
         holder.campoPct.text = "Porcentagem de cada pergunta, em ordem, é\n" +
                 "\t Perunta1:${(dado.avg1 * 100).toInt()}%\n" +
                 " \tPerunta2:${(dado.avg2* 100).toInt()}%\n\t Perunta3:${(dado.avg3* 100).toInt()}%" +

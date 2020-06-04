@@ -15,6 +15,7 @@ import com.example.tp03dr4.BD.database
 import com.example.tp03dr4.R
 import com.example.tp03dr4.ViewModel.MeuViewModel
 import com.example.tp03dr4.adapter.MeuAdapterBairro
+import com.example.tp03dr4.classes.TratamentoBairros
 import com.example.tp03dr4.entidades.BairroTabela
 import kotlinx.android.synthetic.main.fragment_notifications.*
 
@@ -43,23 +44,30 @@ class NotificationsFragment : Fragment() {
 
     }
 
-    inner class PegarBDBairro():AsyncTask<Unit, Unit, Array<BairroTabela>?>(){
-        override fun doInBackground(vararg params: Unit?): Array<BairroTabela>? {
-            return try {
+    inner class PegarBDBairro():AsyncTask<Unit, Unit, MutableList<BairroTabela>?>(){
+        override fun doInBackground(vararg params: Unit?): MutableList<BairroTabela>? {
+            try {
                 val db = Room.databaseBuilder(
                     activity!!.applicationContext,
                     database::class.java,
                     "appdatabase.db"
                 ).build()
 
-                db.tabelaDAO().bairro()
+                val bairros = TratamentoBairros(db.tabelaDAO().allBairro()).tratarDados()
+
+                val passar = mutableListOf<BairroTabela>()
+                bairros.forEach {
+                    passar.add(db.tabelaDAO().bairro(it)[0])
+                    Log.d("PEGANDO DB", passar[passar.lastIndex].bairro.getClearText() ?:"Null")
+                }
+                return passar
             }catch (e: Exception){
                 Log.e("ERRO DE DATABASE", e.message!!)
-                null
+                return null
             }
         }
 
-        override fun onPostExecute(result: Array<BairroTabela>?) {
+        override fun onPostExecute(result: MutableList<BairroTabela>?) {
             super.onPostExecute(result)
             if(result == null){
                 Toast.makeText(

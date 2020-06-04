@@ -2,6 +2,7 @@ package com.example.tp03dr4.entidades
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.tp03dr4.classes.CriptoString
 
 @Entity
 class BairroTabela(
@@ -12,6 +13,6 @@ class BairroTabela(
     val avg5: Float,
     val avg6: Float,
     @PrimaryKey(autoGenerate = false)
-    val bairro: String
+    val bairro: CriptoString
 ) {
 }
