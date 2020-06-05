@@ -13,7 +13,6 @@ import com.example.tp03dr4.BD.MyDatabaseService
 import com.example.tp03dr4.R
 import com.example.tp03dr4.adapter.AdapterBairrosAgrupados
 import com.example.tp03dr4.classes.ConfereBairroTratamento
-import com.example.tp03dr4.classes.TratamentoBairros
 import com.example.tp03dr4.entidades.BairroTabela
 import kotlinx.android.synthetic.main.fragment_notifications.*
 
@@ -40,8 +39,6 @@ class BairrosFragment : Fragment() {
         override fun doInBackground(vararg params: Unit?): Array<BairroTabela>? {
             try {
                 val db = MyDatabaseService.getInstance(context!!)
-
-                val bairros = TratamentoBairros(db.tabelaDAO().allBairro()).tratarDados()
 
                 val passar = db.tabelaDAO().bairro()
                 return passar
