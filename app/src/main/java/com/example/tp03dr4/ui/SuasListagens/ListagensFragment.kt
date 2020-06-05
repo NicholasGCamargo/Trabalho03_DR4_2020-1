@@ -66,7 +66,6 @@ class ListagensFragment : Fragment() {
             }else{
                 rcyVwDashboard.adapter = AdapterListagemUsuario(result)
                 rcyVwDashboard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
             }
         }
     }

@@ -101,7 +101,7 @@ class PerguntasFragment : Fragment() {
 
         override fun onPostExecute(result: Boolean?) {
             super.onPostExecute(result)
-            val toastmsg = if (result!!) "Dado inserido" else "Ocorreu algum erro"
+            val toastmsg = if (result != null) "Dado inserido" else "Ocorreu algum erro"
             Toast.makeText(
                 activity!!.applicationContext,
                 toastmsg,
