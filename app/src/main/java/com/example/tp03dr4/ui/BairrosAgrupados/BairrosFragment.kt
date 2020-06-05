@@ -36,18 +36,14 @@ class BairrosFragment : Fragment() {
 
     }
 
-    inner class PegarBDBairro():AsyncTask<Unit, Unit, MutableList<BairroTabela>?>() {
-        override fun doInBackground(vararg params: Unit?): MutableList<BairroTabela>? {
+    inner class PegarBDBairro() : AsyncTask<Unit, Unit, Array<BairroTabela>?>() {
+        override fun doInBackground(vararg params: Unit?): Array<BairroTabela>? {
             try {
-                val db =  MyDatabaseService.getInstance(context!!)
+                val db = MyDatabaseService.getInstance(context!!)
 
                 val bairros = TratamentoBairros(db.tabelaDAO().allBairro()).tratarDados()
 
-                val passar = mutableListOf<BairroTabela>()
-                bairros.forEach {
-                    passar.add(db.tabelaDAO().bairro(it)[0])
-                    Log.d("PEGANDO DB", passar[passar.lastIndex].bairro.getClearText() ?: "Null")
-                }
+                val passar = db.tabelaDAO().bairro()
                 return passar
             } catch (e: Exception) {
                 Log.e("ERRO DE DATABASE", e.message!!)
@@ -55,7 +51,7 @@ class BairrosFragment : Fragment() {
             }
         }
 
-        override fun onPostExecute(result: MutableList<BairroTabela>?) {
+        override fun onPostExecute(result: Array<BairroTabela>?) {
             super.onPostExecute(result)
             if (result == null) {
                 Toast.makeText(
